@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Selamat Datang di Pagiii [{{template_name}}]</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% assign hash = now | date: '%s' %}    
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}?v={{hash}}">
+    <link rel="stylesheet" href="{{pagiii_url}}/custom_css/editor/content_view.css?v={{ now | date: '%s' }}">
+    <script type="text/javascript" src="{{ 'page.js' | asset_url}}?v={{hash}}"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+    <link href="https://fonts.googleapis.com/css2?family=Freehand&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+      .hero {
+        background-image: url({{pagiii_url}}/themes/{{site.theme_id}}/assets/working.jpg);
+      }
+    </style>
+  </head>
+  <body data-controller="search" class="bg-white">
+    <div data-search-target="searchBar" class="hidden fixed z-50 w-full bg-white">
+      <div class="mt-10 ml-12 mr-12 flex mb-10">
+        <div class="grow">
+          <form action="{{root_url}}/search" method="get">
+            <input data-search-target="keyword" type="text" name="q" placeholder="Ketik untuk mencari..." 
+              class="w-full border-b-2 text-xl border-red-200 !outline-none"/>
+          </form>
+        </div>
+        <div class="w-5 ml-3">
+          <a data-action="click->search#hideSearchBar" class="text-red-400 text-2xl">X</a>
+        </div>
+      </div>
+    </div>
+    {% render 'header', nama_web: site.metadata.label, root_url: root_url, site: site %}
+   
+    
+    <main style="" class="">        
+      {% if template_name == 'index' %}
+        <div style="" class="hero bg-left-top bg-cover bg-blend-overlay bg-gray-700 pt-16">
+          <div style="" class="container mx-auto">
+            <div class="text-orange-200 text-4xl text-center text-freehand">
+              Kami menggabungkan teknologi dan design
+            </div>
+
+            <div class="text-white text-center mt-24 text-4xl lg:text-6xl">
+              Tempat percetakan dimana hasil <br/>dan harga yang seimbang
+            </div>
+
+            <div class="text-white text-center mt-24"><a href="https://www.freepik.com/free-photo/hands-working-network-graphic-overlay-banner-desk_15438750.htm#query=printing%20services&position=4&from_view=keyword&track=ais">Printing Image by rawpixel.com</a> on Freepik</div>
+          </div>          
+          
+        </div>        
+      
+        <section style="" class="container mx-auto mt-16">
+          <div style="" class="font-medium text-2xl mt-28 text-center text-3xl">            
+            Dinamis dan mengikuti trend jaman NOW
+          </div>
+        </section>
+
+        <section style="" class="container mx-auto mt-16">
+          <div style="" class="flex flex-wrap mt-16 items-center">
+            <div style="" class="w-full lg:w-1/2">
+              <img src="{{ 'creative.jpg' | asset_url }}"/>
+            </div>
+            <div style="" class="w-full lg:w-1/2 flex items-center mt-6 lg:mt-0">
+              <div style="" class="mx-16">
+                <h2 class="font-light text-2xl">Kreatif</h2>
+                <div class="mt-8 font-thin text-xl">
+                  Kami selalu memberikan design yang cemerlang, tidak punya ide desain? Tenang,
+                  kami ada contoh contoh desain yang siap untuk dikembangkan
+                </div>
+                <div>
+                  <a href="https://www.freepik.com/free-photo/creative-design-designer-man-working_13461282.htm">Image by rawpixel.com</a> on Freepik
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section style="" class="container mx-auto mt-16">
+          <div style="" class="flex flex-wrap mt-24 items-center">
+            <div style="" class="w-full lg:w-1/2 flex items-center">
+              <div style="" class="mx-16">
+                <h2 class="font-light text-2xl">Inspirasi</h2>
+                <div class="mt-8 font-thin text-xl">
+                  Setiap inspirasi yang datang dari customer kami, selalu menjadikan inspirasi
+                  berkelanjutan untuk customer yang baru. Sehingga kami terus berkembang
+                </div>
+                <div class="mt-8 font-thin">
+                  <a href="https://www.freepik.com/free-photo/woman-drawing-inspire-collage_11306811.htm">Image by rawpixel.com</a> on Freepik
+                </div>
+              </div>
+            </div>
+            <div style="" class="w-full lg:w-1/2 mt-6 lg:mt-0">
+              <img src="{{ 'woman-drawing.jpg' | asset_url }}"/>
+            </div>            
+          </div>
+        </section>
+        <section style="" class="container mx-auto mt-16">
+          <div class="mt-24 flex justify-center">
+            <a aria-label="Chat on WhatsApp" href="https://wa.me/6285295033162?text=mau%20tanya%20tentang%20durux%20ignition">
+              <img alt="Chat on WhatsApp" src="{{ 'WhatsAppButtonGreenSmall.png' | asset_url }}"/>
+            </a>
+          </div>
+
+
+
+          <div style="" class="mt-5 flex flex-wrap">
+            {% for page in pages.latest_10 %}
+
+              <div style="" class="w-full lg:w-1/2 mt-10">
+                <div style="" class="bg-white mx-auto w-80 h-52 border-2 rounded drop-shadow-xl">                
+                  <img src="{{pagiii_url}}/{{page.image_url}}"/>
+                </div>
+
+                <div style="" class="mx-auto w-80 mt-4">
+                  <div style="" class="text-gray-600">                  
+                    {{ page.created_at | date: "%d %b %Y" }}
+                  </div>
+                  <div style="" class="text-black-600 text-2xl">
+                    <a href="{{root_url}}/pages/{{page.handle}}">{{ page.title }}</a>
+                  </div>
+                  <div style="" class="text-gray-600 mt-5">
+                    {{ page.body_preview }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}                   
+          </div>
+          
+          <div style="" class="mt-16 text-center">
+            <a href="{{root_url}}/pages" class="bg-red-300 text-white px-3 py-3 rounded">
+              Lihat Semua Postingan
+            </a>
+          </div>
+        </section>
+      {% endif %}
+
+        {% if template_name == 'pages'%}          
+          {{content_for_layout}}          
+        {% endif %}
+
+        {% if template_name == 'search'%}          
+          {{content_for_layout}}          
+        {% endif %}
+
+        {% if template_name == 'page' %}
+          <div class="mt-10">
+            {{content_for_layout}}
+          </div>
+        {% endif %}
+
+        <div style="" class="bg-gray-700 text-gray-100 mt-16 py-6">
+          <div class="w-full text-center pl-5">
+            ©{{now | date: '%Y'}} {{site.metadata.label}}.
+          </div>
+
+          <div class="mt-16 ml-6">            
+          </div> 
+        </div>
+
+
+        
+
+        <div class="flex flex-wrap mt-10">
+          
+        </div>
+        
+      </section>
+    </main>
+  </body>
+</html>
